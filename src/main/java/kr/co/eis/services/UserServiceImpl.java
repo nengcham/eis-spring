@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<User> findAll(Sort sort) {
-        return repository.findAll(sort);
+        return repository.findAll();
     }
 
     @Override
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public String delete(User user) {
-        repository.save(user);
+        repository.delete(user);
         return null;
     }
 
