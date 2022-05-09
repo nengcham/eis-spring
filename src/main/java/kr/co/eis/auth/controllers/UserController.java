@@ -1,9 +1,8 @@
-package kr.co.eis.controllers;
+package kr.co.eis.auth.controllers;
 
-import kr.co.eis.domains.User;
-import kr.co.eis.services.UserService;
+import kr.co.eis.auth.domains.User;
+import kr.co.eis.auth.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -40,6 +39,12 @@ public class UserController {
         return "";
     }
 
+    @PutMapping("/put")
+    public String put(@RequestBody User user) {
+        return service.put(user);
+    }
+
+    //Embeded Method
     @GetMapping("/findAll")
     public List<User> findAll() {
         return service.findAll();
@@ -58,11 +63,6 @@ public class UserController {
     @GetMapping("/count")
     public long count() {
         return service.count();
-    }
-
-    @PutMapping("/put")
-    public String put(@RequestBody User user) {
-        return service.put(user);
     }
 
     @DeleteMapping("/delete")
