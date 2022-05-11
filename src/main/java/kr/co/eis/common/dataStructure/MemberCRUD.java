@@ -120,7 +120,6 @@ public class MemberCRUD {
             this.phone = builder.phone;
             this.email = builder.email;
         }
-
         static class Builder{
             private String userid, name, password, profileImg, phone, email;
             public Builder(String userid){this.userid=userid;}
