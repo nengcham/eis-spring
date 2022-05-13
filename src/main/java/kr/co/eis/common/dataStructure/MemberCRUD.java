@@ -180,7 +180,6 @@ public class MemberCRUD {
         @Override
         public List<Member> findAll() {
             return (List<Member>) map.values();
-
         }
 
         @Override

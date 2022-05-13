@@ -2,10 +2,9 @@ package kr.co.eis.common.lambda;
 
 import static kr.co.eis.common.dataStructure.AppleList.Apple;
 
+import java.io.File;
 import java.util.Arrays;
-import java.util.function.BiPredicate;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 /**
  * packageName: kr.co.eis.common.lambda
@@ -20,6 +19,7 @@ import java.util.function.Predicate;
  */
 public class Lambda {
     public static void main(String[] args) {
+        /**
         System.out.println(string(new Apple.Builder().origin("영동").color("RED").price(3000).build()));
         System.out.println(
                 string(
@@ -33,6 +33,8 @@ public class Lambda {
         System.out.println("홍 = 김 :"+equals("홍", "김"));
         System.out.println(array(8));
         System.out.println(array(8).length);
+         */
+        System.out.println(random(1, 6));
     }
     public static int integer(String s){
         // Integer i = Integer,parseInt("900");
@@ -58,7 +60,18 @@ public class Lambda {
     // random 람다함수 만들기
     //int p = random(1, 6)
 
-//    public static int random(int i, int j){
-//        Function<Integer, Integer> f = t -> Math.random(t);
-//    }
+    public static int random(int min, int max){
+//        Supplier<Double> f = Math::random;
+//        return (int)(f.get()*max)+min;
+//        BiFunction<Integer, Integer, Integer> f = Math::random;
+//        return f.apply(i, j);
+        BiFunction<Integer, Integer, Integer> f = (t, u) -> (int)(Math.random()*u)+t;
+        return f.apply(min, max);
+    }
+    public static File makeFile(String s){
+        Function<String, File> f = File::new;
+        return f.apply(s);
+    }
+
+
 }
