@@ -1,13 +1,11 @@
 package kr.co.eis.common.dataStructure;
 
-import static kr.co.eis.common.lambda.Lambda.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -22,77 +20,7 @@ import java.util.stream.Collectors;
  * 2022-05-11    ChoiGeonIl     최초 생성
  */
 //Apple color price(int) origin
-public class AppleList {
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        AppleService service = new AppleServiceImpl();
-        while(true) {
-            System.out.println("0.exit 1.save 2.update 3.delete 4.findById 5.findByOrigin 6.findAll 7.count 8.existsById 9.clear");
-            switch (s.next()) {
-                case "0":
-                    return;
-                case "1":
-                    Apple yd = new Apple.Builder()
-                            .origin("영동")
-                            .color("RED")
-                            .price(1000)
-                            .build();
-                    service.save(yd);
-                    Apple yd2 = new Apple.Builder()
-                            .origin("영동")
-                            .color("BLUE")
-                            .price(1500)
-                            .build();
-                    service.save(yd2);
-                    Apple pg = new Apple.Builder()
-                            .origin("풍기")
-                            .color("RED")
-                            .price(2000)
-                            .build();
-                    service.save(pg);
-                    break;
-                case "2":
-
-                    break;
-                case "3":
-
-                    break;
-                case "4":
-                    if (service.findById(1) == null) {
-                        System.out.println("해당 사과가 없습니다.");
-                    } else {
-                        System.out.println(service.findById(1));
-                    }
-                    break;
-                case "5":
-                    System.out.println("findByOrigin");
-                    System.out.println(service.findByOrigin("영동"));
-                    break;
-                case "6":
-                    System.out.println("findAll: " + service.findAll());
-                    break;
-                case "7":
-                    System.out.println("총 사과수: " + service.count() + " 개");
-                    break;
-                case "8":
-//                    if (service.existsById("cho") == true){
-//                        System.out.println("이미 존재하는 아이디 입니다.");
-//                    } else {
-//                        System.out.println("사용 가능한 아이디 입니다.");
-//                    }
-                    break;
-                case "9":
-                    service.clear();
-                    break;
-                case "10":
-                    System.out.println("사과 가격은 "+ integer("1000"));
-                    System.out.println("내가 만든 배열의 사이즈는 "+array(7));
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+public class AppleApp {
     @Data
     public static class Apple{
         private String color, origin;
@@ -182,5 +110,57 @@ public class AppleList {
         public void clear() {
             list.clear();
         }
+    }
+    @Test
+    void appleAppTest(){
+        AppleService service = new AppleServiceImpl();
+        System.out.println("### 1. save ###");
+        Apple yd = new Apple.Builder()
+                .origin("영동")
+                .color("RED")
+                .price(1000)
+                .build();
+        service.save(yd);
+        Apple yd2 = new Apple.Builder()
+                .origin("영동")
+                .color("BLUE")
+                .price(1500)
+                .build();
+        service.save(yd2);
+        Apple pg = new Apple.Builder()
+                .origin("풍기")
+                .color("RED")
+                .price(2000)
+                .build();
+        service.save(pg);
+
+        System.out.println("### 2. countAll ###");
+        System.out.println("총 사과 갯수: "+service.count()+"개");
+
+        System.out.println("### 3. findAll ###");
+        System.out.println(service.findAll());
+
+        System.out.println("### 4. findByOrigin ###");
+        System.out.println("원산지가 영동인 사과정보: "+service.findByOrigin("영동"));
+
+        System.out.println("### 5. findById ###");
+        System.out.println("첫 번째 사과정보: "+service.findById(0));
+
+        System.out.println("### 6. update ###");
+        service.update(0, new Apple.Builder()
+                .origin("캘리포니아")
+                .color("YELLOW")
+                .price(20000)
+                .build());
+        System.out.println("수정된 첫 번째 사과정보:" +service.findById(0));
+
+        System.out.println("### 7. delete ###");
+        service.delete(0);
+        System.out.println("삭제 후 카운트 확인: 총 "+service.count()+"개");
+
+        System.out.println("### 8. clear ###");
+        service.clear();
+        System.out.println("clear 후 카운트 확인: 총 "+ service.count()+"개");
+
     }
 }
