@@ -36,13 +36,13 @@ public class Gugudan {
     }
     @Test
     void testSolution(){
-        Solution s = Solution.builder().start(5).end(8).build();
+        Solution s = Solution.builder().start(19).end(19).build();
 
         SolutionService ss = e -> {
             String res = "";
-            for (int i = e.getStart(); i <= e.getEnd(); i++){
-                for (int j = 1; j <= 9; j++){
-                    res += i + "*" + j + "=" + (i * j)+"\t";
+            for (int i = 1; i <= e.getEnd(); i++){
+                for (int j = 2; j <= e.getStart(); j++){
+                    res += j + "*" + i + "=" + (i * j)+"\t";
                 }
                 res += "\n";
             }

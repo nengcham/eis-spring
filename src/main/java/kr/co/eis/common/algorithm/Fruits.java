@@ -35,7 +35,7 @@ public class Fruits {
         }
 
     }
-    @FunctionalInterface private interface SolutionService{
+    @FunctionalInterface private interface ISolution{
         Solution solution(Solution s);
     }
     @Test
@@ -51,7 +51,7 @@ public class Fruits {
         };
         Solution s = Solution.builder().fruitMarket(fruitMarket).build();
 
-        SolutionService ss = e -> {
+        ISolution ss = e -> {
             int total = 0;
             int apple = 0;
             int grape = 0;

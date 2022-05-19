@@ -1,10 +1,12 @@
 package kr.co.eis.soccer.domains;
 
-import lombok.Data;
+import lombok.*;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * packageName: kr.co.eis.soccer.domains
@@ -17,15 +19,26 @@ import javax.persistence.Id;
  * ================================
  * 2022-05-09    ChoiGeonIl     최초 생성
  */
-@Data
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Component
+@Eager
+@Table(name = "stadiums")
 public class Stadium {
-    @Id long stadiumId ;
+    @Id
+    @Column(name = "stadium_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) private long stadiumNo ;
+    @Column(nullable = false) private String stadiumId ;
     private String stadiumName ;
-    private String homeTeamId ;
+    private String hometeamId ;
     private String seatCount ;
     private String address ;
     private String ddd ;
     private String tel ;
+
+    @OneToMany(mappedBy = "s")
+    List<Schedule> schedules = new ArrayList<>();
 }

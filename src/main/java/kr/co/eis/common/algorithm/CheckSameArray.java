@@ -30,18 +30,19 @@ public class CheckSameArray {
 
         @Override
         public String toString() {
-            return String.format("두 배열은 %s 요소를 포함하는 배열 입니다.", res);
+            return String.format("두 배열은 %s 요소들을 포함하는 배열 입니다.", res);
         }
     }
-    @FunctionalInterface private interface SolutionService{
+    @FunctionalInterface private interface ISolution{
         Solution solution(Solution s);
     }
     @Test
-    void testSolution(){
+    void test(){
         int[] arr1 = {1, 3, 2};
         int[] arr2 = {2, 3, 1};
         Solution s = Solution.builder().arr1(arr1).arr2(arr2).build();
-        SolutionService ss = e -> {
+
+        ISolution ss = e -> {
             int count = 0;
             int[] arr3 = e.getArr1();
             int[] arr4 = e.getArr2();

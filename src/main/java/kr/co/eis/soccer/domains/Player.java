@@ -1,10 +1,10 @@
 package kr.co.eis.soccer.domains;
 
-import lombok.Data;
+import lombok.*;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * packageName: kr.co.eis.soccer.domains
@@ -17,13 +17,19 @@ import javax.persistence.Id;
  * ================================
  * 2022-05-09    ChoiGeonIl     최초 생성
  */
-@Data
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Component
 @Entity
+@Table(name = "players")
 public class Player {
-    @Id long playerId ;
-    private String playerName ;
-    private String teamId ;
+    @Id
+    @Column(name = "player_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) private long playerNo ;
+    @Column(nullable = false) private String playerId ;
+    @Column(nullable = false) private String playerName ;
     private String ePlayerName ;
     private String nickname ;
     private String joinYyyy ;
@@ -34,4 +40,9 @@ public class Player {
     private String solar ;
     private String height ;
     private String weight ;
+    private String teamId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_no")
+    private Team t;
 }
