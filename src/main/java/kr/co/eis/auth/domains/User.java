@@ -1,6 +1,7 @@
 package kr.co.eis.auth.domains;
 
 import com.sun.istack.NotNull;
+import kr.co.eis.board.domains.Article;
 import lombok.*;
 import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Component;
@@ -38,6 +39,6 @@ public class User {
     @Column private @NotNull String email;
     @Column(name = "reg_date") @NotNull private String regDate;
 
-    @OneToMany(mappedBy = "u")
-    List<Article> articles = new ArrayList<>();
+//    @OneToMany(mappedBy = "u")
+//    List<Article> articles = new ArrayList<>();
 }

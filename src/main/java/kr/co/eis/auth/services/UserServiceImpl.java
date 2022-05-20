@@ -29,10 +29,10 @@ public class UserServiceImpl implements UserService{
 
     private final UserRepository repository;
 
-    @Override
-    public String login(User user) {
-        return repository.login(user);
-    }
+//    @Override
+//    public String login(User user) {
+//        return repository.login(user);
+//    }
 
     @Override
     public List<User> findAll() {
@@ -54,11 +54,11 @@ public class UserServiceImpl implements UserService{
         return repository.count();
     }
 
-    @Override
-    public String put(User user) {
-        repository.put(user);
-        return "";
-    }
+//    @Override
+//    public String put(User user) {
+//        repository.put(user);
+//        return "";
+//    }
 
     @Override
     public String delete(User user) {

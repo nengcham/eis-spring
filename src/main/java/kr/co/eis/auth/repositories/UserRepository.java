@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 
 interface UserCustomRepository{
+    //000. 팀의 전화번호와 팩스번호를 수정하시오
     String login(User user);
     void put(User user);
 }
@@ -24,7 +25,7 @@ interface UserCustomRepository{
 
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>, UserCustomRepository {
+public interface UserRepository extends JpaRepository<User, Long> {
 
 
 

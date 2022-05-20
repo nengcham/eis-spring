@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 
 interface ScheduleCustomRepository{
-
+    // 000. 스케줄 날짜만 수정이 되도록 하시오.
 }
 
 @Repository

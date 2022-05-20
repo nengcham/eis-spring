@@ -1,6 +1,6 @@
 package kr.co.eis.board.repositoryies;
 
-import kr.co.eis.board.domains.Article1;
+import kr.co.eis.board.domains.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +15,9 @@ import org.springframework.stereotype.Repository;
  * ================================
  * 2022-05-09    ChoiGeonIl     최초 생성
  */
+interface ArticleCustomRepository{
+    // 000. title 과 content 를 수정하시오
+}
 @Repository
-public interface ArticleRepository extends JpaRepository<Article1, Long> {
+public interface ArticleRepository extends JpaRepository<Article, Long> {
 }

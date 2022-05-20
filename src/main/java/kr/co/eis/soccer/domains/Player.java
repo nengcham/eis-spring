@@ -1,7 +1,6 @@
 package kr.co.eis.soccer.domains;
 
 import lombok.*;
-import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;

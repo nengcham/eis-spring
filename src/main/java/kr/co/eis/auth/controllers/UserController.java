@@ -23,26 +23,26 @@ import java.util.Optional;
  * 2022-05-03    ChoiGeonIl     최초 생성
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService service;
 
-    @PostMapping("/login")
-    public String login(@RequestBody User user) {
-        return service.login(user);
-    }
+//    @PostMapping("/login")
+//    public String login(@RequestBody User user) {
+//        return service.login(user);
+//    }
 
     @GetMapping("/logout")
     public String logout() {
         return "";
     }
 
-    @PutMapping("/put")
-    public String put(@RequestBody User user) {
-        return service.put(user);
-    }
+//    @PutMapping("/put")
+//    public String put(@RequestBody User user) {
+//        return service.put(user);
+//    }
 
     //Embeded Method
     @GetMapping("/findAll")
