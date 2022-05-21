@@ -30,6 +30,8 @@ interface TeamCustomRepository{
             nativeQuery = true)
     List<String> findTeamNamesAsc();
 //    005-2
+
+
 }
 
 @Repository
