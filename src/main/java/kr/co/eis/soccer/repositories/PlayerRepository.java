@@ -18,6 +18,8 @@ import org.springframework.stereotype.Repository;
 
 interface PlayerCustomRepository{
     // 000. 선수들의 키와 몸무게를 변경하시오
+
+
 }
 
 @Repository
