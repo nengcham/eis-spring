@@ -1,8 +1,11 @@
-package kr.co.eis.security.domains;
+package kr.co.eis.auth.domains;
+
+import lombok.Builder;
+import lombok.Getter;
 
 /**
  * packageName: kr.co.eis.security.domains
- * fileName   : UserDetailsImpl
+ * fileName   : Messenger
  * author     : ChoiGeonIl
  * date       : 2022-05-23
  * desc       :
@@ -11,5 +14,8 @@ package kr.co.eis.security.domains;
  * ================================
  * 2022-05-23    ChoiGeonIl     최초 생성
  */
-public class UserDetailsImpl {
+@Getter @Builder
+public class Messenger {
+    private String message, code;
+    private int status;
 }

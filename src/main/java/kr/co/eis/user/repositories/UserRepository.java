@@ -1,8 +1,10 @@
-package kr.co.eis.auth.repositories;
+package kr.co.eis.user.repositories;
 
-import kr.co.eis.auth.domains.User;
+import kr.co.eis.user.domains.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * packageName: kr.co.eis.repositories
@@ -26,7 +28,5 @@ interface UserCustomRepository{
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
-
-
+    Optional<User> findByUsername(String username);
 }

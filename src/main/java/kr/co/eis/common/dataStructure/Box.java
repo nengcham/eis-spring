@@ -3,7 +3,7 @@ package kr.co.eis.common.dataStructure;
 import lombok.Data;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import kr.co.eis.auth.domains.User;
+import kr.co.eis.user.domains.User;
 
 
 import java.util.ArrayList;
