@@ -1,11 +1,14 @@
 package kr.co.eis.user.controllers;
 
+import kr.co.eis.auth.domains.Messenger;
 import kr.co.eis.user.domains.User;
+import kr.co.eis.user.domains.UserDTO;
 import kr.co.eis.user.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,60 +32,60 @@ public class UserController {
 
     private final UserService service;
 
-//    @PostMapping("/login")
-//    public String login(@RequestBody User user) {
-//        return service.login(user);
-//    }
-
-    @GetMapping("/logout")
-    public String logout() {
-        return "";
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO>  login(@RequestBody User user) {
+        return ResponseEntity.ok(service.login(user)) ;
     }
 
-//    @PutMapping("/put")
-//    public String put(@RequestBody User user) {
-//        return service.put(user);
-//    }
+    @GetMapping("/logout")
+    public ResponseEntity<Messenger> logout() {
+        return ResponseEntity.ok(service.logout());
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Messenger> update(@RequestBody User user) {
+        return ResponseEntity.ok(service.update(user));
+    }
 
     //Embeded Method
     @GetMapping("/findAll")
-    public List<User> findAll() {
-        return service.findAll();
+    public ResponseEntity<List<User>> findAll() {
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/findAll/sort")
-    public List<User> findAll(Sort sort) {
-        return service.findAll(sort);
+    public ResponseEntity<List<User>> findAll(Sort sort) {
+        return ResponseEntity.ok(service.findAll(sort));
     }
 
     @GetMapping("/findAll/pageable")
-    public Page<User> findAll(Pageable pageable) {
-        return service.findAll(pageable);
+    public ResponseEntity<Page<User>> findAll(Pageable pageable) {
+        return ResponseEntity.ok(service.findAll(pageable));
     }
 
     @GetMapping("/count")
-    public long count() {
-        return service.count();
+    public ResponseEntity<Messenger> count() {
+        return ResponseEntity.ok(service.count());
     }
 
     @DeleteMapping("/delete")
-    public String delete(@RequestBody User user) {
-        return service.delete(user);
+    public ResponseEntity<Messenger> delete(@RequestBody User user) {
+        return ResponseEntity.ok(service.delete(user));
     }
 
     @PostMapping("/join")
-    public String save(@RequestBody User user) {
-        return service.save(user);
+    public ResponseEntity<Messenger> save(@RequestBody User user) {
+        return ResponseEntity.ok(service.save(user));
     }
 
     @GetMapping("/findById/{userid}")
-    public Optional<User> findById(@PathVariable String userid) {
-        return service.findById(userid);
+    public ResponseEntity<Optional<User>> findById(@PathVariable String userid) {
+        return ResponseEntity.ok(service.findById(userid));
     }
 
     @GetMapping("/existsById/{userid}")
-    public boolean existsById(@PathVariable String userid) {
-        return service.existsById(userid);
+    public ResponseEntity<Messenger> existsById(@PathVariable String userid) {
+        return ResponseEntity.ok(service.existsById(userid));
     }
 
 }

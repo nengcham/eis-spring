@@ -15,6 +15,16 @@ import java.util.function.*;
  * 2022-05-11    ChoiGeonIl     최초 생성
  */
 public class Lambda {
+    public static long longParse(String s){
+        Function<String, Long> f = Long::parseLong;
+        return f.apply(s);
+    }
+    public static float floatParse(String s){
+        Function<String, Float> f = Float::parseFloat;
+        return f.apply(s);
+    }
+
+
     public static void main(String[] args) {
         /**
         System.out.println(string(new Apple.Builder().origin("영동").color("RED").price(3000).build()));
