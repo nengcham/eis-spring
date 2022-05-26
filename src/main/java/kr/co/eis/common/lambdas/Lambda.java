@@ -1,6 +1,8 @@
 package kr.co.eis.common.lambdas;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.function.*;
 
 /**
@@ -22,6 +24,10 @@ public class Lambda {
     public static float floatParse(String s){
         Function<String, Float> f = Float::parseFloat;
         return f.apply(s);
+    }
+    public static String nowDate(){
+        Supplier<String> s = () -> string(LocalDate.now());
+        return s.get();
     }
 
 

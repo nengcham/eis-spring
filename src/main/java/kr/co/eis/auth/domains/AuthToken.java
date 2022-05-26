@@ -29,15 +29,14 @@ public class AuthToken {
     }
 
     private String createToken() {
-        try {
+        try{
             Map<String, Object> headers = new HashMap<>();
-            headers.put("typ", "JWT");
-            headers.put("alg", "HS256");
+            headers.put("typ","JWT");
+            headers.put("alg","HS256");
             Map<String, Object> payload = new HashMap<>();
-            headers.put("data", "dummy");
+            payload.put("data","dummy");
             Date exp = new Date();
-            exp.setTime(exp.getTime() + 1000 * 60L * 10L);
-
+            exp.setTime(exp.getTime() + 1000 * 60L * 10L); // 10분
             return Jwts.builder()
                     .setHeader(headers)
                     .setClaims(payload)

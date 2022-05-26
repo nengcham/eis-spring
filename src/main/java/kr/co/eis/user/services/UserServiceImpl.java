@@ -21,8 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static kr.co.eis.common.lambdas.Lambda.longParse;
-import static kr.co.eis.common.lambdas.Lambda.string;
+import static kr.co.eis.common.lambdas.Lambda.*;
 
 
 /**
@@ -46,17 +45,23 @@ public class UserServiceImpl implements UserService{
     private final ModelMapper modelMapper;
 
     @Override
-    public UserDTO login(User user) {
+    public UserDTO login(UserDTO paramUser) {
         try {
-            UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-            User findUser = repository.findByUsername(user.getUsername()).orElse(null);
-            String pw = repository.findByUsername(user.getUsername()).get().getPassword();
-            boolean checkPassword = encoder.matches(user.getPassword(), pw);
-            String username = user.getUsername();
-            List<Role> roles = findUser.getRoles();
-            String token = checkPassword ? provider.createToken(username, roles) : "Wrong Password";
-            userDTO.setToken(token);
-            return userDTO;
+            UserDTO returnUser = new UserDTO();
+            String username = paramUser.getUsername();
+            User findUser = repository.findByUsername(username).orElse(null);
+            if(findUser != null){
+                boolean checkPassword = encoder.matches(paramUser.getPassword(), findUser.getPassword());
+                if(checkPassword){
+                    returnUser = modelMapper.map(findUser, UserDTO.class);
+                    String token = provider.createToken(username, returnUser.getRoles());
+                    returnUser.setToken(token);
+                }else{
+                    String token = "FAILURE";
+                    returnUser.setToken(token);
+                }
+            }
+            return returnUser;
         }
         catch (Exception e){
             throw new SecurityRuntimeException("유효하지 않는 아이디/비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
@@ -95,15 +100,21 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Messenger save(User user) {
+    public Messenger save(UserDTO user) {
+        System.out.println("서비스로 전달된 회원가입 정보: "+user.toString());
         String result = "";
         if (repository.findByUsername(user.getUsername()).isEmpty()){
 
             List<Role> list = new ArrayList<>();
             list.add(Role.USER);
 
-            repository.save(User.builder().password(encoder.encode(user.getPassword()))
-                    .roles(list).build());
+            repository.save(User.builder()
+                            .username(user.getUsername())
+                            .email(user.getEmail())
+                            .name(user.getName())
+                            .regDate(user.getRegDate())
+                            .password(encoder.encode(user.getPassword()))
+                            .roles(list).build());
             result = "SUCCESS";
         }else {
             result = "FAIL";

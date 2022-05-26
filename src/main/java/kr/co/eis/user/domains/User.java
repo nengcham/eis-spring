@@ -23,6 +23,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Setter
 @Entity
 @Table(name = "users")
 public class User {

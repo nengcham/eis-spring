@@ -24,7 +24,7 @@ public class UserDTO {
     @ApiModelProperty (position = 3) String password;
     @ApiModelProperty (position = 4) String name;
     @ApiModelProperty (position = 5) String email;
-    @ApiModelProperty (position = 6) private String redDate;
+    @ApiModelProperty (position = 6) private String regDate;
     @ApiModelProperty (position = 7) private String token;
     @ApiModelProperty (position = 8) private List<Role> roles;
 }
