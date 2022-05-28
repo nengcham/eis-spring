@@ -67,8 +67,7 @@ public class UserServiceImpl implements UserService{
             throw new SecurityRuntimeException("유효하지 않는 아이디/비밀번호", HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
-
-
+    
     @Override
     public List<User> findAll() {
         return repository.findAll();
